@@ -1,0 +1,14 @@
+# Obsidian workspace (user-specific)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+
+# OS files
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.swp
+*~
