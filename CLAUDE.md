@@ -14,14 +14,8 @@ Your job is to help the user design, build, and troubleshoot Clay workflows — 
 
 **Raw Sources → Wiki (synthesized knowledge) → Reference Docs + Build Resources**
 
-### raw/ (Immutable Sources)
-Where source documents are dropped for processing. Articles, Clay Academy lessons, guides, transcripts, case studies. **The LLM reads from raw/ but never modifies files in it.** This is the source of truth.
-- `raw/clay-academy/` — Clay Academy lessons and courses
-- `raw/articles/` — Blog posts, thought pieces, industry analysis
-- `raw/guides/` — How-to guides and tutorials from any source
-- `raw/case-studies/` — Real-world examples and implementations
-- `raw/transcripts/` — Meeting notes, call transcripts, video notes
-- `raw/assets/` — Images, PDFs, supporting files
+### raw/ (Intake Staging)
+Where source documents are dropped for processing. This is a temporary inbox — files land here, get ingested, and then either move verbatim into the appropriate Knowledge/ folder (e.g., Clay Academy lessons) or get synthesized into wiki/ pages. **raw/ should be empty or near-empty after processing.**
 
 ### wiki/ (LLM-Synthesized Knowledge)
 LLM-generated and LLM-maintained pages that compound over time. When a source is ingested, the LLM extracts key information and integrates it into this layer — updating entity pages, revising topic summaries, noting contradictions, strengthening synthesis. **The LLM owns this layer entirely.**
@@ -145,17 +139,21 @@ Four operations for maintaining the knowledge graph. These can be triggered expl
 
 1. Read the source document completely
 2. Discuss key takeaways with the user
-3. Create a source summary page in `wiki/sources/`
-4. Identify all entities, concepts, tools, patterns, and comparisons mentioned
-5. For each: create a new wiki page OR update an existing one
-6. Add/update cross-references ([[wikilinks]]) across all touched pages
-7. Flag contradictions with existing wiki content
-8. Update relevant Knowledge/ docs if the source contains reference material
+3. Determine disposition — does this file:
+   - **Move verbatim** into Knowledge/ (e.g., Clay Academy lessons, API docs, official reference material) — place it in the appropriate subfolder
+   - **Get synthesized** into wiki/ pages (e.g., articles, guides, case studies) — extract key knowledge into concept/pattern/tool pages
+   - **Both** — move the source into Knowledge/ AND create wiki/ pages that cross-reference it
+4. Create a source summary page in `wiki/sources/`
+5. Identify all entities, concepts, tools, patterns, and comparisons mentioned
+6. For each: create a new wiki page OR update an existing one
+7. Add/update cross-references ([[wikilinks]]) across all touched pages
+8. Flag contradictions with existing wiki content
 9. Update `index.md` with any new pages
 10. Append entry to `log.md`
+11. Remove the processed file from raw/
 
 **Rules:**
-- Never modify files in raw/ — they are immutable source material
+- raw/ is a staging inbox — files should not stay there after processing
 - Always cite sources using [[source-page-name]] links
 - When updating existing pages, note what changed and why
 - Ask before creating pages for minor or tangential entities
