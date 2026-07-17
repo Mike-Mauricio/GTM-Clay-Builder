@@ -1,0 +1,43 @@
+---
+title: "GitHub integration - Clay Docs"
+source: "https://university.clay.com/docs/github-integration-overview"
+author:
+published:
+created: 2026-07-14
+description: "Software development platform."
+tags:
+  - "clippings"
+---
+Overview
+
+## Github Overview
+
+The Github integration allows you to easily access and analyze GitHub data in Clay, including user details, repository metrics, contributors, stargazers, forks, and email addresses, as well as perform searches and retrieve repository lists for organizations.
+
+## Setting up Github and Clay integration
+
+To set up the Github integration, connect your Linear account by signing in via OAuth. You can access this in the **Settings > Connections** or via any integration panel.
+
+## Available Actions with the Github Integration
+
+### Action Find User Details
+
+Use this action to retrieve essential information about a GitHub user by username or profile URL.
+
+**Setup Inputs**
+
+- **Username**: Enter or select a column containing the GitHub username to retrieve user details.
+- **Include Repos** (Optional): Select to include information about the user’s repositories.
+- **Include Orgs** (Optional): Select to include information about the user’s organizations.
+- **Include Contributions** (Optional): Select to include the number of user contributions over the past year.
+- **Include Starred** (Optional): Select to include the number of repositories the user has starred.
+
+### Action Find Repo Summary
+
+Use this action to retrieve key metrics for a specified GitHub repository.
+
+**Setup Inputs**
+
+- **Repository URL**: Enter or select a column containing the URL of the GitHub repository to get metrics.
+
+Github Overview

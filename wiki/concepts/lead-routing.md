@@ -5,6 +5,7 @@ created: 2026-07-14
 updated: 2026-07-14
 sources:
   - "[[automated-inbound]]"
+  - "[[best-practices-getting-started]]"
 tags:
   - concept
   - routing
@@ -17,9 +18,15 @@ tags:
 
 Getting the right leads to the right reps as fast as possible. Routing is the step between [[lead-scoring]] and outreach — once a lead is qualified and scored, it needs to land on a specific rep's desk without manual intervention. In the context of [[speed-to-lead]], routing delays are pipeline killers.
 
-## Weighted Round Robin in Clay
+## Round Robin in Clay
 
-Clay has a native action: **"Distribute Leads Round Robin (Weighted)"**. This is the primary routing mechanism for most inbound pipelines.
+Clay offers two round robin variants:
+
+### Standard Round Robin
+Distributes leads evenly in fixed order. Outputs Label, Value, and Raw Counter. Setup: add assignment labels (names/identifiers) with optional associated values (e.g., Salesforce IDs).
+
+### Weighted Round Robin
+Clay's primary routing mechanism for most inbound pipelines — a native action: **"Distribute Leads Round Robin (Weighted)"**.
 
 ### How It Works
 

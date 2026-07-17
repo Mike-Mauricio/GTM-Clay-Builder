@@ -3,7 +3,7 @@ title: Conditional Runs
 type: concept
 created: 2026-07-13
 updated: 2026-07-13
-sources: ["[[clay-101-gtm-automation]]", "[[crm-enrichment]]"]
+sources: ["[[clay-101-gtm-automation]]", "[[crm-enrichment]]", "[[best-practices-getting-started]]"]
 tags: [enrichment, gating, credit-efficiency, workflow-design]
 ---
 
@@ -61,6 +61,30 @@ For complex conditions, create dedicated boolean columns (using [[ai-formulas]])
 3. Set conditional run: "Only run if Is Qualified = true AND Needs Email = true"
 
 This approach (boolean decomposition) makes logic testable, debuggable, and reusable across multiple enrichments.
+
+## Conditional Runs vs Conditional Statements
+
+Conditional runs and [[conditional-statements]] are different features that complement each other:
+
+| | Conditional Runs | [[conditional-statements\|Conditional Statements]] |
+|---|---|---|
+| **What it controls** | Whether an enrichment runs at all | Logic within a formula column |
+| **Scope** | Per-enrichment gating | Per-cell formula evaluation |
+| **Effect** | Skips the row entirely → saves credits | Returns different values per row → routes/classifies |
+| **Syntax** | "Only run if" formula in Run Settings | IF/THEN/ELSE inside formula columns |
+
+Use conditional runs to **save credits** by skipping unqualified rows. Use conditional statements to **route and classify** within formulas that do run.
+
+## Formula Syntax
+
+Conditional run formulas support three operator types:
+- **Comparison:** equals, greater than, not equal to, contains
+- **Logical:** AND, OR, NOT (e.g., `NOT {{status}} == "Closed"`)
+- **Dynamic variables:** use `/` to reference columns
+
+**"Use AI" button:** In Run Settings, input plain language instructions and Clay generates the conditional formula automatically.
+
+**Alternative method:** Filter existing rows in a view, then run enrichments — filtered views only enrich visible rows. This acts as an implicit conditional without writing a formula.
 
 ## See Also
 

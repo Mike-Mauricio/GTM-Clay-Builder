@@ -3,7 +3,7 @@ title: Clay Functions
 type: tool
 created: 2026-07-14
 updated: 2026-07-14
-sources: ["[[functions-course]]", "[[clay-mcp-course]]"]
+sources: ["[[functions-course]]", "[[clay-mcp-course]]", "[[best-practices-getting-started]]"]
 tags: [clay-feature, functions, reusable-workflows, governance, infrastructure, mcp]
 ---
 
@@ -132,9 +132,31 @@ This makes functions infrastructure for the full GTM stack, not just Clay tables
 
 The quality of naming, input definitions, and output structure matters even more for external callers. A human in Clay can figure out a vaguely named function. An AI caller cannot.
 
+## FAQs
+
+**Credits:** Functions don't add their own credit cost. Credits are consumed by the individual enrichment actions inside the function and are attributed to the calling table, not the function itself. If a function only contains formula columns, it costs zero credits.
+
+**Row limits:** No limit as of GA. Functions support unlimited rows via passthrough with 10x speedup and fair sharding for parallel execution. (Prior to GA, 50K limit applied.)
+
+**Nesting:** Functions can call other functions — compose complex workflows from smaller, validated building blocks.
+
+**Editing while live:** Entering edit mode creates a sandbox. The function continues processing production inputs during editing. Changes only apply when you publish. Previously processed rows remain unchanged and won't be marked as stale.
+
+**Editing vs pausing:** Editing enters sandbox mode while the function keeps running. Pausing stops execution entirely — rows that arrive wait without processing. Pause when you need to stop immediately (API key update, error fix).
+
+**Debugging:** Select one or more rows (including archived rows), right-click → "Debug selected rows in edit mode." Runs those rows through your current edits without affecting production.
+
+**Access permissions:** Set to "Admins and invited collaborators only" to restrict who can edit. All workspace members can always call functions from their tables.
+
+**Column selection:** Include action columns (enrichments, Claygents, waterfalls) — not static input columns. Every included column becomes a required input for callers.
+
+**Saving preserves data:** Saving columns as a function preserves existing data without rerunning enrichments. No double-charge.
+
+**Version history:** Not currently available.
+
 ## Availability
 
-Available on all paid Clay plans at no additional cost.
+Available on all paid Clay plans at no additional cost. Advanced capabilities such as MCP access are gated to higher tiers.
 
 ## See Also
 

@@ -5,6 +5,7 @@ created: 2026-07-14
 updated: 2026-07-14
 sources:
   - "[[clay-mcp-course]]"
+  - "[[best-practices-getting-started]]"
 tags:
   - clay-feature
   - mcp
@@ -78,11 +79,39 @@ When your ops team has connected [[clay-audiences]], you can query your own CRM/
 
 Before outreach, generate summary briefs on top contacts: "Give me summary briefs on each of the top three contacts — background, priorities, recent public commentary." Provides opinionated prioritization.
 
+## Troubleshooting
+
+**Dev Tools first:** Use Network + Console tabs to determine if the block is AI-tool-side (e.g., 403 on OpenAI endpoint) vs Clay-side (function errors, integration issues). If the same prompt works in Claude but fails in ChatGPT, it's usually a ChatGPT org-level restriction.
+
+**Function naming conflicts:** If a custom function name overlaps with a built-in Clay tool, the AI may invoke the wrong one. Fix: prompt "List subroutines" then call by exact name. Avoid generic names like "find contacts."
+
+**ChatGPT 403 "MCP Tool is disabled":** Comes from OpenAI's policy layer, not Clay. The workspace admin must enable the Clay app + all actions, including `run_subroutine_no_mapping` (commonly missed — this is the action that executes custom Functions).
+
+**"Failed to update integration settings":** Hard-refresh; if persists, recreate the function under a different name.
+
+## Admin Controls
+
+- **Default credit limit:** Settings → MCP users — applies to all new reps
+- **Per-user overrides:** Set higher/lower limits for specific users
+- **Block access:** Remove from workspace or set credit limit to 0 (cannot directly revoke OAuth)
+- **Identity sync from Salesforce:** Enable "Sync user IDs from audiences" to restrict reps to only accounts they own in Salesforce
+- **Sales Rep role:** Lowest-permission seat — MCP access only, no Clay UI, no table editing, no API key visibility. Reps don't need their own API keys — functions execute server-side with workspace credentials.
+
+## Credit Behavior
+
+- People/company **search** via MCP is free (no credits)
+- Credits consumed only on actual enrichments or Function calls
+- **Querying Audiences data** uses actions, not credits
+- Credit cost is identical whether triggered from Clay, Claude, or ChatGPT
+- One-off operations (find email, research account) don't create a Clay table by default — results stay in chat unless user clicks "Open in Clay"
+
 ## Limitations
 
-- Results return 20 at a time — designed for targeted searches, not bulk operations
-- For hundreds/thousands of results, use the Clay app directly
+- Results paginate in groups of 20, up to 100 results (5 pages). Beyond 100, use Clay directly.
 - Best used for: individual SDR/AE prospecting, meeting prep, quick research, targeted outreach
+- Outreach via sequencer requires a Function built for it (sequencer column exposed via MCP); without it, AI can only send via connected email (Gmail)
+- CSV in Claude: share CSV in conversation and Claude calls Function once per row (no dedicated bulk upload via MCP)
+- Currently connects to Claude, ChatGPT, Microsoft Copilot, and Glean — no self-hosted MCP server for other tools
 
 ## Who It's For
 

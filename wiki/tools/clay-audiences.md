@@ -5,6 +5,7 @@ created: 2026-07-14
 updated: 2026-07-14
 sources:
   - "[[audiences-course]]"
+  - "[[best-practices-getting-started]]"
 tags:
   - clay-feature
   - audiences
@@ -162,6 +163,34 @@ Signal fires as trigger. Auto-enrich the triggered records with context for pers
 Add a review step for human-in-the-loop quality control before messages send.
 
 See [[personalized-outbound-pipeline]] for the detailed pattern.
+
+## Scale Limits & Refresh Frequency
+
+| | Enterprise | Growth |
+|---|---|---|
+| **CRM/warehouse sync** | Every 15 minutes | Daily |
+| **Segment updates** | Continuous | On daily refresh |
+| **Continuous enrichment** | Within ~15 minutes of record entering segment | Within ~15 minutes |
+
+**Matching:** Choose a single unique identifier per source — LinkedIn URL, email, phone, or name+state (people); domain or LinkedIn URL (companies). Records sharing the same identifier value are merged into one profile. Choose carefully — duplicates within a single source also merge.
+
+## FAQs & Best Practices
+
+**Upsert as a bridge:** For sources Audiences doesn't natively support, use the `Upsert Audiences Record` enrichment in a Table to push records into an Audience.
+
+**Messy CRM?** Don't wait to clean up — CRM cleanup is often the first use case. Sync as-is, run LinkedIn enrichments to refresh contact data, use enriched identifiers to surface duplicates.
+
+**Import before you export.** Turn on import first, validate Clay's data quality, then enable write-back once you trust what you're seeing.
+
+**Filter before enriching.** Enriching "All People" instead of a filtered segment means paying for every record. Narrow first.
+
+**Use CPJ draft mode.** Records from People Search land in draft state. Apply additional filters, run a quick enrichment, and verify quality before committing — no credits spent until records are live.
+
+**Schedule large initial syncs at end of day (EST)** to avoid interfering with live CRM operations.
+
+**API math for nervous admins:** Divide total record count by 50,000 (import batch size) for import API calls. A 5M-record CRM = only 100 import API calls vs. a typical Salesforce limit of ~150M/day.
+
+**Start narrow, then expand.** One scoped use case → demonstrate value → expand. Customers who see one use case working naturally discover the next.
 
 ## Who It's For
 

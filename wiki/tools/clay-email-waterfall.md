@@ -3,7 +3,7 @@ title: Clay Email Waterfall
 type: tool
 created: 2026-07-13
 updated: 2026-07-13
-sources: ["[[clay-101-gtm-automation]]"]
+sources: ["[[clay-101-gtm-automation]]", "[[best-practices-getting-started]]"]
 tags: [clay-feature, enrichment, email-finding, waterfall, validation]
 ---
 
@@ -71,6 +71,10 @@ After running an email waterfall, Clay creates validation detail columns that ar
 ## See Also
 
 - [[waterfall-enrichment]] — the general pattern email waterfalls implement
+- [[email-verification]] — detailed breakdown of all five verification statuses and their deliverability implications
+- [[work-email-provider-benchmark]] — data test comparing 12 work email providers across SMB and enterprise datasets
+- [[personal-email-provider-benchmark]] — data test comparing 5 personal email providers
 - [[clay-find-people]] — prerequisite: find contacts before finding their emails
 - [[crm-export-dedup]] — use validated emails as unique identifiers for CRM dedup
 - [[conditional-runs]] — gate email waterfalls behind qualification
+- [[zeliq]] — EMEA-strong email/phone provider for waterfall inclusion

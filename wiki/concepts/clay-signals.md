@@ -3,7 +3,7 @@ title: Clay Signals
 type: concept
 created: 2026-07-14
 updated: 2026-07-14
-sources: ["[[signals-and-abm]]"]
+sources: ["[[signals-and-abm]]", "[[best-practices-getting-started]]"]
 tags: [concept, signals, intent, monitoring, real-time, proactive-gtm]
 ---
 
@@ -71,6 +71,26 @@ Monitor anything digitally accessible — proprietary intelligence competitors c
 - Engineering density (GitHub activity, technical job postings)
 
 Custom signals are the source of [[gtm-alpha]] — they detect opportunities everyone else misses.
+
+## Five Built-In Signal Types
+
+1. **New Hires** — people who joined a company within the last 3 months
+2. **Promotions** — title changes indicating advancement
+3. **Job Changes** — people who moved to a different company
+4. **LinkedIn Brand Mentions** — social listening for brand/competitor mentions (Pro and Enterprise plans only)
+5. **News & Fundraising** — funding rounds, M&A, product launches, partnerships
+
+## Signal Setup
+
+Requires a table with LinkedIn URLs (for people signals) or company identifiers — website or LinkedIn URL (for company signals).
+
+**Setup flow:** Actions → "Monitor for..." → select table → configure filters → set frequency → optionally add enrichments → optionally add sample results (preview) → Save and run.
+
+**Editing:** Click the column title (radar icon) → Edit column.
+
+**Frequency:** Adjustable but frequency-based only — cannot schedule to specific times (e.g., first of the month).
+
+**Plan availability:** Most signals available on any paid plan. LinkedIn social listening (brand mentions) requires Pro or Enterprise.
 
 ## Signal Prioritization Matrix
 

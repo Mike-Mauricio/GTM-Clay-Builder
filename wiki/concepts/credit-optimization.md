@@ -3,13 +3,51 @@ title: Credit Optimization
 type: concept
 created: 2026-07-13
 updated: 2026-07-13
-sources: ["[[clay-101-gtm-automation]]", "[[ai-powered-gtm-automation]]", "[[audiences-course]]", "[[functions-course]]"]
-tags: [credits, cost-management, best-practices, experimentation, byok, metaprompter, audiences, functions]
+sources: ["[[clay-101-gtm-automation]]", "[[ai-powered-gtm-automation]]", "[[audiences-course]]", "[[functions-course]]", "[[best-practices-getting-started]]"]
+tags: [credits, cost-management, best-practices, experimentation, byok, metaprompter, audiences, functions, actions, data-credits]
 ---
 
 # Credit Optimization
 
 Strategies for maximizing Clay's value while managing credit spend. Clay's usage-based model means every enrichment, [[claygent]] query, and provider lookup costs credits. Smart credit management is a design discipline, not an afterthought.
+
+## Actions vs Data Credits
+
+Clay tracks usage with **two separate metrics** — understanding the distinction is critical for cost planning:
+
+| | Actions | Data Credits |
+|---|---|---|
+| **What it measures** | Platform usage capacity (orchestration) | Data marketplace purchases |
+| **Cost per enrichment** | Always 1 action | Varies (0.5–10+ credits based on data type) |
+| **Rollover** | No — resets each billing cycle | Yes — up to 2× monthly limit (monthly plans); 15% rollover (annual plans) |
+| **Top-up** | Not available — must upgrade plan tier | One-time top-ups available (30% premium) |
+
+**Actions** measure when Clay enriches, exports, or executes GTM work. Each record enriched or exported = 1 Action regardless of provider. Actions are consumed even when using your own API keys (BYOK), because Clay still does the orchestration.
+
+**Data Credits** are spent to buy data from Clay's 150+ provider marketplace. Cost varies by data type — emails are cheap, phone numbers are expensive. Each fully enriched record typically costs **6–20 Data Credits** depending on enrichment types and BYOK usage.
+
+### What Doesn't Cost Actions or Data Credits
+
+- Importing data from CRM or warehouse
+- Webhook imports
+- Clay formulas, filters, and [[clay-normalization-tools|normalization]]
+- [[ai-formulas]] (deterministic transforms)
+- Sculptor queries
+- CSV exports
+- Send Table Data / Lookup Single Row operations
+- Creating audiences (only the export counts)
+
+### Plan-Level Capacity
+
+| Plan | Actions/month | Data Credits/month |
+|---|---|---|
+| Launch | 15,000 | 2,500–10,000 |
+| Growth | 40,000 | 6,000–100,000 |
+| Enterprise | 100,000+ | 100,000+ |
+
+### Workbook Credit Limits (Enterprise)
+
+Admins can set per-workbook Data Credit spend limits to control usage at the workbook level. When the limit is reached, further Actions are blocked until the admin raises the cap.
 
 ## Zero-Credit Tools
 

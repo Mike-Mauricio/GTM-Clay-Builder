@@ -160,3 +160,17 @@ Ingested the Clay MCP for Reps course from Clay University. Introduces Clay's MC
 - **Cross-references:** Links to clay-functions, clay-audiences, personalized-outbound-pipeline, speed-to-lead, credit-optimization. Functions page now covers both table-based and MCP-based calling.
 - **Running totals:** 74 wiki pages, 11 source courses ingested
 - **Raw cleanup:** Removed original files from `raw/Clay MCP/`
+
+## [2026-07-14] ingest | Best Practices: Getting Started (36 articles)
+Ingested the "Best Practices - Getting Started" documentation batch from Clay University. Unlike the Academy courses (structured learning paths), these are standalone reference docs covering platform features, data benchmarks, and best practices. Largest single-batch ingest to date by article count.
+- **Source:** 36 Markdown articles (clipped from Clay University). Mix of net-new reference docs and overlap with existing course material.
+- **Disposition:** All files copied to `Knowledge/Clay/Best-Practices/` as permanent reference material AND synthesized into wiki pages. Overlapping content merged into existing pages.
+- **Wiki pages created:** 16 new — 5 concepts, 8 tools, 3 comparisons
+- **Wiki pages updated:** 8 — credit-optimization (Actions vs Data Credits, plan capacity, workbook limits), clay-audiences (row limits, refresh frequency, FAQs, best practices), clay-functions (detailed FAQs, debugging, editing vs pausing, nesting), clay-signals (5 signal types, setup flow, plan gating), clay-mcp (troubleshooting, admin controls, credit behavior, limitations), conditional-runs (vs conditional statements distinction, formula syntax, AI formula generation), lead-routing (standard round robin variant), clay-email-waterfall (verification links, provider benchmarks)
+- **New concepts:** clay-ai-architecture (9 AI features, model catalog, pricing, data privacy), conditional-statements (IF/THEN/ELSE formula logic), dynamic-column-references (slash command column referencing), email-verification (5 verification statuses), scheduled-operations (scheduled sources + columns + table versions)
+- **New tools:** clay-ads (ad platform sync + compliance), clay-api-cli (REST API, CLI, Agent Plugin), clay-http-api (enrichment/source modes, pagination, JWT), clay-sources (CSV import, 50K limit, saved searches), clay-table-management (auto-dedupe, auto-run, passthrough tables), clay-table-alerts (Enterprise monitoring), find-ai (UseFind.ai natural language search), zeliq (EMEA phone/email provider)
+- **New comparisons:** work-email-provider-benchmark (12 providers, SMB + enterprise datasets), personal-email-provider-benchmark (5 providers, 2,354 contacts), phone-provider-benchmark (10 providers, 3 regions, TitanX scoring)
+- **Source:** best-practices-getting-started
+- **Cross-references:** All new pages linked to existing concepts and tools. Comparison pages connect to waterfall-enrichment and enrichment pipelines. API pages connect to webhooks, functions, and MCP. Table management pages connect to audiences and experiment-before-scale.
+- **Running totals:** 90 wiki pages, 12 source batches ingested
+- **Raw cleanup:** Removed original files from `raw/Best Practices - Getting Started/`
